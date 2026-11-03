@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-purple: #563F6A;
+    --color-purple-deep: #3B284B;
+    --color-gold: #EDC868;
+    --color-cream: #FAF8F5;
+    --color-ink: #2A2330;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    background-color: #FAF8F5;
+    color: #2A2330;
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #FAF8F5;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #563F6A44;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #563F6A88;
+  }
+}
+
+/* Editorial Serif & Devanagari styling */
+.font-display {
+  font-family: 'Instrument Serif', 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-garamond {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-devanagari {
+  font-family: 'Noto Serif Devanagari', serif;
+}
+
+/* Architectural Arch Mask */
+.arch-mask {
+  border-top-left-radius: 9999px;
+  border-top-right-radius: 9999px;
+}
+
+.arch-mask-bottom {
+  border-bottom-left-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+}
+
+/* Shimmer & Gold accents */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #F8E9B6 0%, #EDC868 50%, #CCA344 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-gold-subtle {
+  border-color: rgba(237, 200, 104, 0.35);
+}
+
+/* Subtle architectural grid pattern */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(86, 63, 106, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(86, 63, 106, 0.04) 1px, transparent 1px);
+}
+
+.bg-grid-dark {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(237, 200, 104, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(237, 200, 104, 0.05) 1px, transparent 1px);
+}
+
+/* Subtle noise texture */
+.paper-texture {
+  background-color: #FAF8F5;
+  background-image: radial-gradient(rgba(42, 35, 48, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
+}
