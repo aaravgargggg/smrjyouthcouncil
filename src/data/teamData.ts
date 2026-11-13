@@ -6,7 +6,7 @@ export interface Department {
 }
 
 export const TEACHER_COORDINATOR = {
-  name: 'Bhavya Jain',
+  name: 'Mrs. Bhavya Jain',
   role: 'Teacher Coordinator',
   phone: '+91 73185 89995',
   message: '(Message to be given)'
