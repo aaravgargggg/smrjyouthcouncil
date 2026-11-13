@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Navigation, PageId } from './components/Navigation';
 import { Footer } from './components/Footer';
-import { CustomCursor } from './components/CustomCursor';
 import { HomePage } from './pages/HomePage';
 import { SchoolPage } from './pages/SchoolPage';
 import { YouthCouncilPage } from './pages/YouthCouncilPage';
@@ -48,8 +47,8 @@ export const App: React.FC = () => {
       window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
       setTimeout(() => {
         setIsTransitioning(false);
-      }, 50);
-    }, 150);
+      }, 30);
+    }, 120);
   };
 
   const renderPage = () => {
@@ -76,19 +75,16 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-cream text-ink font-body selection:bg-purple selection:text-gold relative selection:bg-purple/90 selection:text-gold">
-      {/* Precision Desktop Custom Cursor */}
-      <CustomCursor />
-
-      {/* Persistent Navigation with Opaque Transition and Overlay */}
+    <div className="min-h-screen flex flex-col bg-[#f7f4ee] text-[#1f1b16] font-sans selection:bg-[#2a1b36] selection:text-[#edc868] relative">
+      {/* Sticky Header */}
       <Navigation currentPage={currentPage} onNavigate={handleNavigate} />
 
-      {/* Main Page Container with Curtain Fade Transition */}
-      <main className={`flex-1 transition-opacity duration-300 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>
+      {/* Main Page Container */}
+      <main className={`flex-1 transition-opacity duration-150 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>
         {renderPage()}
       </main>
 
-      {/* Custom Identity Footer */}
+      {/* Footer */}
       <Footer onNavigate={handleNavigate} />
     </div>
   );

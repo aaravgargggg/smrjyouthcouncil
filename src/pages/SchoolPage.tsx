@@ -2,410 +2,324 @@ import React, { useState } from 'react';
 import { PageId } from '../components/Navigation';
 import { 
   SCHOOL_STATS, 
+  SCHOOL_STORY,
+  SRI_AUROBINDO_QUOTE,
+  TOP_10_RANKING,
+  SCHOOL_VISION,
   LEADERSHIP_PROFILES, 
-  CAMPUS_GALLERY, 
-  SRI_AUROBINDO_QUOTE, 
-  TOP_10_RANKING 
+  CAMPUS_GALLERY
 } from '../data/schoolData';
-import { ConnectedGlobe3D } from '../components/WebGL/ConnectedGlobe3D';
-import { 
-  ArrowUpRight, 
-  ChevronRight, 
-  Quote, 
-  Award, 
-  Building2, 
-  Compass, 
-  X, 
-  Sparkles 
-} from 'lucide-react';
+import { X } from 'lucide-react';
 
 interface SchoolPageProps {
   onNavigate: (page: PageId) => void;
 }
 
 export const SchoolPage: React.FC<SchoolPageProps> = ({ onNavigate }) => {
-  const [selectedLeaderId, setSelectedLeaderId] = useState<string>(LEADERSHIP_PROFILES[0].id);
   const [activeLightboxImage, setActiveLightboxImage] = useState<string | null>(null);
 
-  const selectedLeader = LEADERSHIP_PROFILES.find((l) => l.id === selectedLeaderId) || LEADERSHIP_PROFILES[0];
-
   return (
-    <div className="w-full bg-cream min-h-screen pt-24">
+    <div className="w-full bg-[#f7f4ee] min-h-screen pt-24 pb-24 text-[#1f1b16]">
       
-      {/* SECTION 1: SCHOOL INTRODUCTION & SRI AUROBINDO QUOTE */}
-      <section className="py-16 lg:py-24 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          {/* Header Tag & Title */}
-          <div className="max-w-3xl mb-12">
-            <span className="text-xs font-bold uppercase tracking-widest text-purple">
-              01 — Institutional Legacy
-            </span>
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl text-ink leading-tight mt-2">
-              A Legacy of <br />
-              <span className="italic font-garamond text-purple">Conscious Learning.</span>
-            </h1>
+      {/* 1. HERITAGE & SCHOOL STORY */}
+      <section className="max-w-[1200px] mx-auto px-6 sm:px-8 py-12">
+        <div className="border-t border-[rgba(31,27,22,0.08)] pt-6 mb-8">
+          <span className="font-mono text-xs text-[#6f665a] tracking-wider uppercase">
+            01 · Heritage
+          </span>
+        </div>
+
+        <div className="max-w-3xl mb-10">
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#1f1b16] font-normal leading-[1.1] tracking-tight">
+            A Legacy of Learning
+          </h1>
+        </div>
+
+        {/* Real campus photo in true color */}
+        <div className="w-full aspect-[16/9] rounded-[16px] overflow-hidden border border-[rgba(31,27,22,0.08)] shadow-sm mb-12 bg-[#efe9df]">
+          <img
+            src="/assets/school-building.png"
+            alt="Seth M.R. Jaipuria School campus"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        {/* Full-width Sri Aurobindo Quote */}
+        <div className="my-12 p-8 sm:p-10 bg-[#fdfbf7] rounded-[12px] border-l-4 border-l-[#edc868] border border-[rgba(31,27,22,0.08)]">
+          <p className="font-serif text-2xl sm:text-3xl text-[#1f1b16] font-normal leading-relaxed">
+            “{SRI_AUROBINDO_QUOTE.text}”
+          </p>
+          <div className="mt-4 text-sm font-sans text-[#6f665a] font-medium">
+            — {SRI_AUROBINDO_QUOTE.author}
           </div>
+        </div>
 
-          {/* Asymmetrical Split Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            {/* Left 7 Columns: Campus Photograph & Arch */}
-            <div className="lg:col-span-7 relative">
-              <div className="rounded-3xl overflow-hidden border border-gold/40 shadow-2xl aspect-[16/10] relative">
-                <img
-                  src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80"
-                  alt="Seth M.R. Jaipuria School Lucknow"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/40 via-transparent to-transparent"></div>
-              </div>
-
-              {/* Sri Aurobindo Quote Floating Box */}
-              <div className="mt-6 lg:-mt-12 lg:ml-12 p-8 bg-white/95 backdrop-blur rounded-2xl border border-purple/15 shadow-xl relative z-10 max-w-xl">
-                <Quote className="w-8 h-8 text-gold mb-3 opacity-80" />
-                <p className="font-garamond italic text-base sm:text-lg text-ink leading-relaxed">
-                  "{SRI_AUROBINDO_QUOTE.text}"
-                </p>
-                <div className="mt-4 pt-3 border-t border-purple/10 flex items-center justify-between">
-                  <span className="text-xs font-bold uppercase tracking-wider text-purple">
-                    {SRI_AUROBINDO_QUOTE.author}
-                  </span>
-                  <span className="text-[11px] text-ink-muted">
-                    {SRI_AUROBINDO_QUOTE.source}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right 5 Columns: Institutional Narrative */}
-            <div className="lg:col-span-5 space-y-6 text-ink-muted text-base sm:text-lg leading-relaxed">
-              <p>
-                Founded in 1992 under the auspices of the Integral Education Society, <strong>Seth M.R. Jaipuria School, Lucknow</strong> has emerged as one of the premier educational institutions of India. 
-              </p>
-              <p>
-                Anchored in the spiritual philosophy of Sri Aurobindo and The Mother, the school advocates an integral pedagogy that seeks the simultaneous perfection of the physical, vital, mental, and psychic dimensions of the young scholar.
-              </p>
-              <p>
-                Our 10-acre campus in Gomti Nagar serves not merely as classrooms, but as a living sanctuary of debate, cultural vitality, and ethical inquiry, providing the ideal stage for the SMRJ Youth Council 2027.
-              </p>
-
-              <div className="pt-2">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple/10 rounded-full text-xs font-semibold text-purple">
-                  <Sparkles className="w-4 h-4 text-gold" />
-                  <span>Affiliated with CISCE, New Delhi · ICSE & ISC</span>
-                </div>
-              </div>
-            </div>
-
+        {/* 5-Paragraph School Story */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 text-[#3d362e] text-base sm:text-[17px] leading-relaxed pt-2">
+          <div className="lg:col-span-6 space-y-6">
+            <p>
+              {SCHOOL_STORY.paragraphs[0]}
+            </p>
+            <p>
+              {SCHOOL_STORY.paragraphs[1]}
+            </p>
+            <p>
+              {SCHOOL_STORY.paragraphs[2]}
+            </p>
           </div>
-
+          <div className="lg:col-span-6 space-y-6">
+            <p>
+              {SCHOOL_STORY.paragraphs[3]}
+            </p>
+            <p>
+              {SCHOOL_STORY.paragraphs[4]}
+            </p>
+          </div>
         </div>
       </section>
 
-
-      {/* SECTION 2: EDITORIAL SCHOOL FACTS GRID */}
-      <section className="py-20 bg-cream-dark/60 border-y border-purple/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-purple">
-                02 — Institutional In Numbers
-              </span>
-              <h2 className="font-display text-4xl sm:text-5xl text-ink mt-2">
-                The Fabric of Excellence
-              </h2>
-            </div>
-            <span className="text-xs font-mono uppercase tracking-widest text-ink-muted mt-3 md:mt-0">
-              Vineet Khand · Gomti Nagar · Lucknow
-            </span>
-          </div>
-
-          {/* Large Editorial Statistics Grid */}
+      {/* 2. STATS BOXES ONLY (No 'School facts' text, no 'Vineet Khand gn' on left) */}
+      <section className="py-16 bg-[#fdfbf7] border-y border-[rgba(31,27,22,0.08)]">
+        <div className="max-w-[1200px] mx-auto px-6 sm:px-8">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {SCHOOL_STATS.map((stat, idx) => (
-              <div
-                key={idx}
-                className="p-6 bg-white rounded-2xl border border-purple/10 shadow-sm flex flex-col justify-between hover:border-gold/60 transition-all hover:-translate-y-1"
-              >
-                <div>
-                  <div className="font-display text-4xl sm:text-5xl font-bold text-purple tracking-tight">
-                    {stat.value}
-                  </div>
-                  <div className="text-[11px] uppercase font-bold tracking-widest text-gold-dark mt-2">
-                    {stat.label}
-                  </div>
+              <div key={idx} className="p-5 rounded-[10px] bg-[#f7f4ee]/60 border border-[rgba(31,27,22,0.06)] space-y-1">
+                <span className="font-mono text-xs text-[#6f665a] uppercase tracking-wider block">
+                  {stat.label}
+                </span>
+                <div className="font-serif text-2xl sm:text-3xl text-[#1f1b16] tabular-nums font-normal">
+                  {stat.value}
                 </div>
-                <p className="text-[11px] text-ink-muted mt-4 leading-normal">
+                <p className="text-xs text-[#5e554a] leading-normal pt-1">
                   {stat.detail}
                 </p>
               </div>
             ))}
           </div>
-
         </div>
       </section>
 
-
-      {/* SECTION 3: WORLD'S TOP 10 SPECIAL RECOGNITION */}
-      <section className="py-24 bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
-          <div className="relative rounded-3xl bg-gradient-to-br from-cream via-cream to-cream-dark border-2 border-gold/40 p-8 sm:p-14 shadow-2xl overflow-hidden">
-            
-            {/* Giant Gold-Outlined Number '10' in Background */}
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 select-none pointer-events-none opacity-15">
-              <span className="font-display text-[260px] sm:text-[380px] font-bold text-purple leading-none">
-                10
-              </span>
-            </div>
-
-            <div className="relative z-10 max-w-2xl space-y-6">
-              
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold/20 border border-gold text-purple font-semibold text-xs uppercase tracking-widest">
-                <Award className="w-4 h-4 text-gold-dark" />
-                <span>{TOP_10_RANKING.year}</span>
-              </div>
-
-              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-ink font-bold leading-tight">
-                Recognized Among the <br />
-                <span className="italic font-garamond text-purple">World's Top 10 Schools.</span>
-              </h2>
-
-              <p className="text-base sm:text-lg text-ink-muted leading-relaxed">
-                {TOP_10_RANKING.description}
-              </p>
-
-              <div className="p-4 bg-white/80 rounded-xl border border-purple/10 text-xs text-ink/80 space-y-1">
-                <div className="font-semibold text-purple">Official Recognition Citation:</div>
-                <div>Ranking Entity: <strong>T4 Education (World's Best School Prizes)</strong></div>
-                <div>Category: <strong>{TOP_10_RANKING.category}</strong></div>
-                <div>Global Partners: Templeton World Charity Foundation, Accenture, American Express</div>
-              </div>
-
-            </div>
-
-          </div>
-
+      {/* 3. WORLD'S TOP 10 SCHOOLS */}
+      <section className="py-20 max-w-[1200px] mx-auto px-6 sm:px-8">
+        <div className="border-t border-[rgba(31,27,22,0.08)] pt-6 mb-8">
+          <span className="font-mono text-xs text-[#6f665a] uppercase tracking-wider">
+            02 · Recognition
+          </span>
         </div>
-      </section>
 
-
-      {/* SECTION 4: OUR VISION & THE 3D CONNECTED GLOBE */}
-      <section className="py-24 bg-cream relative overflow-hidden border-t border-purple/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="text-xs font-bold uppercase tracking-widest text-purple">
-              04 — The Universal Horizon
-            </span>
-            <div className="font-devanagari text-4xl sm:text-5xl text-purple font-bold mt-2">
-              वसुधैव कुटुम्बकम्
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start bg-[#fdfbf7] p-8 sm:p-12 rounded-[16px] border border-[rgba(31,27,22,0.08)] shadow-sm">
+          {/* Top 10 Poster Image */}
+          <div className="lg:col-span-5">
+            <div 
+              onClick={() => setActiveLightboxImage(TOP_10_RANKING.posterImage)}
+              className="w-full aspect-[4/5] rounded-[12px] overflow-hidden border border-[rgba(31,27,22,0.12)] cursor-pointer group bg-[#f3ede2]"
+            >
+              <img
+                src={TOP_10_RANKING.posterImage}
+                alt="Seth M.R. Jaipuria School - World's Top 10 Schools"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+              />
             </div>
-            <p className="text-sm font-garamond italic text-ink-muted mt-2">
-              "The World is One Family"
-            </p>
-            <p className="text-base text-ink-muted mt-4 leading-relaxed">
-              We envision an educational fellowship where intellectual distinction is intrinsically tethered to global empathy, recognizing that sovereign boundaries are porous to shared civilizational aspirations.
-            </p>
+            <div className="mt-3 text-xs font-mono text-[#6f665a] text-center">
+              Click to view poster
+            </div>
           </div>
 
-          {/* 3D Connected Globe Component */}
-          <div className="rounded-3xl border border-gold/40 shadow-xl overflow-hidden bg-cream-light relative">
-            <ConnectedGlobe3D />
-          </div>
-
-        </div>
-      </section>
-
-
-      {/* SECTION 5: LEADERSHIP MESSAGES (FEATURED SELECTOR) */}
-      <section className="py-24 bg-cream-dark/50 border-t border-purple/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="mb-12">
-            <span className="text-xs font-bold uppercase tracking-widest text-purple">
-              05 — Institutional Guardians
-            </span>
-            <h2 className="font-display text-4xl sm:text-5xl text-ink mt-2">
-              Leadership Messages
+          {/* Top 10 Text */}
+          <div className="lg:col-span-7 space-y-6">
+            <h2 className="font-serif text-3xl sm:text-4xl text-[#1f1b16] font-normal leading-tight">
+              {TOP_10_RANKING.title}
             </h2>
+
+            <div className="space-y-4 text-base text-[#3d362e] leading-relaxed">
+              {TOP_10_RANKING.paragraphs.map((paragraph, idx) => (
+                <p key={idx}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. OUR VISION (No globe line, exactly the content given) */}
+      <section className="py-20 bg-[#fdfbf7] border-y border-[rgba(31,27,22,0.08)]">
+        <div className="max-w-[1200px] mx-auto px-6 sm:px-8">
+          <div className="border-t border-[rgba(31,27,22,0.08)] pt-6 mb-8">
+            <span className="font-mono text-xs text-[#6f665a] uppercase tracking-wider">
+              03 · Vision
+            </span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
-            {/* Left 4: Selectable Vertical Profile List */}
-            <div className="lg:col-span-4 space-y-3">
-              {LEADERSHIP_PROFILES.map((leader) => {
-                const isSelected = leader.id === selectedLeaderId;
-                return (
-                  <button
-                    key={leader.id}
-                    onClick={() => setSelectedLeaderId(leader.id)}
-                    className={`w-full p-4 rounded-xl text-left transition-all duration-200 border flex items-center gap-4 ${
-                      isSelected
-                        ? 'bg-purple text-cream border-gold shadow-md'
-                        : 'bg-white text-ink border-purple/10 hover:border-gold/50'
-                    }`}
+          <div className="w-full space-y-5">
+            <h2 className="font-serif text-3xl sm:text-4xl text-[#1f1b16] font-normal">
+              Our Vision
+            </h2>
+            <div lang="sa" className="font-devanagari text-4xl sm:text-5xl text-[#2a1b36] font-normal">
+              “{SCHOOL_VISION.motto}”
+            </div>
+            <p className="text-base sm:text-[18px] text-[#3d362e] leading-relaxed pt-2 w-full">
+              {SCHOOL_VISION.description}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. LEADERSHIP MESSAGES */}
+      <section className="py-20 max-w-[1200px] mx-auto px-6 sm:px-8">
+        <div className="border-t border-[rgba(31,27,22,0.08)] pt-6 mb-8">
+          <span className="font-mono text-xs text-[#6f665a] uppercase tracking-wider">
+            04 · Leadership Messages
+          </span>
+        </div>
+
+        <div className="mb-12">
+          <h2 className="font-serif text-3xl sm:text-4xl text-[#1f1b16] font-normal">
+            Leadership Messages
+          </h2>
+        </div>
+
+        {/* 4 Leadership Entries */}
+        <div className="divide-y divide-[rgba(31,27,22,0.08)] border-y border-[rgba(31,27,22,0.08)]">
+          {LEADERSHIP_PROFILES.map((leader) => (
+            <div key={leader.id} className="py-10">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+                {/* Authentic Portrait Image */}
+                <div className="md:col-span-3 sm:w-48 md:w-full">
+                  <div 
+                    onClick={() => setActiveLightboxImage(leader.image)}
+                    className="aspect-[3/4] rounded-[10px] overflow-hidden border border-[rgba(31,27,22,0.12)] bg-[#efe9df] shadow-sm cursor-pointer group"
                   >
                     <img
                       src={leader.image}
                       alt={leader.name}
-                      className="w-12 h-12 rounded-full object-cover border-2 border-gold/60"
+                      className="w-full h-full object-cover object-top transition-transform duration-200 group-hover:scale-[1.02]"
                     />
-                    <div>
-                      <h4 className={`font-display text-lg font-bold leading-tight ${isSelected ? 'text-cream' : 'text-ink'}`}>
-                        {leader.name}
-                      </h4>
-                      <p className={`text-xs ${isSelected ? 'text-gold' : 'text-purple'}`}>
-                        {leader.role} · {leader.salutation}
-                      </p>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Right 8: Featured Portrait & Full Message */}
-            <div className="lg:col-span-8 bg-white rounded-3xl p-8 sm:p-12 border border-gold/30 shadow-xl grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-              
-              <div className="md:col-span-5 aspect-[4/5] rounded-2xl overflow-hidden border border-purple/10 shadow-md">
-                <img
-                  src={selectedLeader.image}
-                  alt={selectedLeader.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <div className="md:col-span-7 space-y-4">
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-widest text-gold-dark">
-                    {selectedLeader.salutation}
-                  </span>
-                  <h3 className="font-display text-3xl text-ink font-bold">
-                    {selectedLeader.name}
-                  </h3>
-                  <div className="text-xs text-purple font-medium mt-0.5">
-                    {selectedLeader.role}
                   </div>
                 </div>
 
-                <div className="p-4 bg-cream-dark/60 border-l-2 border-gold rounded-r-lg font-garamond italic text-sm text-ink leading-relaxed">
-                  "{selectedLeader.quote}"
+                {/* Details & Quote/Message */}
+                <div className="md:col-span-9 space-y-4">
+                  <div>
+                    <div className="text-xs font-mono uppercase tracking-wider text-[#6f665a] mb-1">
+                      {leader.sectionTitle || leader.role}
+                    </div>
+                    <h3 className="font-serif text-2xl sm:text-3xl text-[#1f1b16] font-normal">
+                      {leader.name}
+                    </h3>
+                  </div>
+
+                  {leader.quote && (
+                    <blockquote className="font-serif text-xl sm:text-2xl text-[#1f1b16] leading-relaxed italic border-l-2 border-[#edc868] pl-4 my-3">
+                      “{leader.quote}”
+                    </blockquote>
+                  )}
+
+                  {leader.message && (
+                    <p className="text-sm font-mono text-[#6f665a] italic">
+                      {leader.message}
+                    </p>
+                  )}
                 </div>
-
-                <p className="text-sm text-ink-muted leading-relaxed">
-                  {selectedLeader.message}
-                </p>
-
-                <p className="text-xs text-ink-muted/80 pt-2 border-t border-purple/10">
-                  {selectedLeader.credentials}
-                </p>
               </div>
-
             </div>
-
-          </div>
-
+          ))}
         </div>
       </section>
 
-
-      {/* SECTION 6: OUR CAMPUS PHOTOGRAPHIC GALLERY */}
-      <section className="py-24 bg-white border-t border-purple/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-purple">
-                06 — Spatial Sanctuary
-              </span>
-              <h2 className="font-display text-4xl sm:text-5xl text-ink mt-2">
-                Our Campus & Chambers
-              </h2>
-            </div>
-            <p className="text-xs text-ink-muted mt-2 md:mt-0 uppercase tracking-wider">
-              Click any photograph to view high-resolution gallery
-            </p>
+      {/* 6. OUR CAMPUS */}
+      <section className="py-20 bg-[#fdfbf7] border-t border-[rgba(31,27,22,0.08)]">
+        <div className="max-w-[1200px] mx-auto px-6 sm:px-8">
+          <div className="border-t border-[rgba(31,27,22,0.08)] pt-6 mb-8">
+            <span className="font-mono text-xs text-[#6f665a] uppercase tracking-wider">
+              05 · Campus
+            </span>
           </div>
 
-          {/* Asymmetrical Photographic Gallery Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {CAMPUS_GALLERY.map((item, idx) => (
+          <div className="mb-12">
+            <h2 className="font-serif text-3xl sm:text-4xl text-[#1f1b16] font-normal">
+              Our campus
+            </h2>
+          </div>
+
+          {/* 5 campus images with first spanning 2 cols */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* First image spans 2 columns */}
+            <div
+              onClick={() => setActiveLightboxImage(CAMPUS_GALLERY[0].image)}
+              className="lg:col-span-2 cursor-pointer group"
+            >
+              <div className="aspect-[3/2] rounded-[12px] overflow-hidden border border-[rgba(31,27,22,0.08)] bg-[#efe9df]">
+                <img
+                  src={CAMPUS_GALLERY[0].image}
+                  alt={CAMPUS_GALLERY[0].title}
+                  className="w-full h-full object-cover transition-opacity duration-150 group-hover:opacity-95"
+                />
+              </div>
+              <div className="mt-2 text-sm text-[#1f1b16] font-sans font-medium">
+                {CAMPUS_GALLERY[0].title}
+              </div>
+            </div>
+
+            {/* Remaining 4 images in 1 column each on lg */}
+            {CAMPUS_GALLERY.slice(1).map((item, idx) => (
               <div
                 key={idx}
                 onClick={() => setActiveLightboxImage(item.image)}
-                className="group relative rounded-2xl overflow-hidden border border-purple/10 cursor-pointer shadow-sm hover:shadow-xl transition-all"
+                className="cursor-pointer group"
               >
-                <div className={`${item.aspect} w-full overflow-hidden`}>
+                <div className="aspect-[3/2] rounded-[12px] overflow-hidden border border-[rgba(31,27,22,0.08)] bg-[#efe9df]">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-opacity duration-150 group-hover:opacity-95"
                   />
                 </div>
-                <div className="p-4 bg-white">
-                  <span className="text-[10px] uppercase font-bold tracking-wider text-gold-dark">
-                    {item.category}
-                  </span>
-                  <h4 className="font-display text-lg text-ink font-semibold mt-0.5">
-                    {item.title}
-                  </h4>
-                  <p className="text-xs text-ink-muted mt-1 line-clamp-2">
-                    {item.caption}
-                  </p>
+                <div className="mt-2 text-sm text-[#1f1b16] font-sans font-medium">
+                  {item.title}
                 </div>
               </div>
             ))}
           </div>
-
         </div>
       </section>
 
-
-      {/* LIGHTBOX MODAL */}
+      {/* Lightbox Modal */}
       {activeLightboxImage && (
         <div
           onClick={() => setActiveLightboxImage(null)}
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn"
+          className="fixed inset-0 z-50 bg-black/85 flex items-center justify-center p-4 animate-fadeIn"
         >
           <button
             onClick={() => setActiveLightboxImage(null)}
-            className="absolute top-6 right-6 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+            className="absolute top-6 right-6 w-11 h-11 flex items-center justify-center rounded-[8px] bg-white/10 text-white hover:bg-white/20 transition-colors"
+            aria-label="Close lightbox"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5" />
           </button>
-          <div className="max-w-4xl max-h-[85vh] rounded-2xl overflow-hidden shadow-2xl border border-gold/40">
+          <div className="max-w-4xl max-h-[85vh] rounded-[12px] overflow-hidden shadow-2xl">
             <img
               src={activeLightboxImage}
-              alt="Campus View"
+              alt="Enlarged View"
               className="w-full h-full object-contain"
             />
           </div>
         </div>
       )}
 
-
-      {/* SECTION 7: REGISTRATION CTA */}
-      <section className="py-20 bg-purple text-cream text-center relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
-          <span className="text-xs font-mono uppercase tracking-widest text-gold">
-            Join the Jaipuria Summit
-          </span>
-          <h2 className="font-display text-4xl sm:text-5xl text-cream font-bold">
-            Bring Your Delegation to Lucknow
+      {/* 7. REGISTRATION CALL TO ACTION */}
+      <section className="py-20 max-w-[1200px] mx-auto px-6 sm:px-8 border-t border-[rgba(31,27,22,0.08)] text-center">
+        <div className="max-w-xl mx-auto space-y-4">
+          <h2 className="font-serif text-3xl sm:text-4xl text-[#1f1b16] font-normal">
+            Register your school
           </h2>
-          <p className="text-sm sm:text-base text-cream/80 max-w-xl mx-auto">
-            Experience our 10-acre campus, world-class conference facilities, and traditional Awadhi hospitality this April 2027.
+          <p className="text-sm sm:text-base text-[#5e554a]">
+            Each school participates with a team of three members from Classes IX–XII.
           </p>
           <div className="pt-2">
             <button
               onClick={() => onNavigate('register')}
-              className="px-8 py-3.5 bg-gold text-[#2A1B36] font-bold text-xs uppercase tracking-widest rounded-full hover:bg-gold-light transition-all shadow-lg inline-flex items-center gap-2"
+              className="h-11 px-6 rounded-[8px] bg-[#edc868] text-[#1f1b16] font-medium text-sm hover:bg-[#e2bc5c] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#2a1b36] shadow-sm"
             >
-              <span>Register Your Delegation</span>
-              <ArrowUpRight className="w-4 h-4" />
+              Register your school
             </button>
           </div>
         </div>

@@ -1,101 +1,56 @@
 export interface CouncilPhase {
   id: string;
-  stageNumber: string;
+  phaseNumber: string;
+  dayLabel: string;
   title: string;
-  subtitle: string;
-  actionWords: string[];
   description: string;
-  format: string;
-  deliverables: string[];
-  judgingCriteria: string[];
-  landingImage: string;
 }
 
 export const COUNCIL_PHASES: CouncilPhase[] = [
   {
-    id: 'phase-1',
-    stageNumber: '01',
-    title: 'Phase I',
-    subtitle: 'Question. Debate. Deliberate.',
-    actionWords: ['QUESTION', 'CHALLENGE', 'DELIBERATE'],
-    description: 'The foundation of the ascent begins in rigorous intellectual interrogation. Delegates dissect multi-layered geopolitical, socio-economic, and ethical crises through parliamentary procedure, moderated caucuses, and policy confrontation.',
-    format: 'Intense structured committee sessions where each delegation must articulate, defend, and critique foundational position papers against peer scrutinies.',
-    deliverables: [
-      'Preliminary Position Whitepapers',
-      'Structured Committee Defense & Cross-examination',
-      'Crisis Directive Submissions'
-    ],
-    judgingCriteria: [
-      'Substantive Knowledge & Analytical Depth',
-      'Diplomatic Decorum & Rebuttal Precision',
-      'Command of Institutional Precedents'
-    ],
-    landingImage: 'https://images.unsplash.com/photo-1544531585-9847b68c8c86?auto=format&fit=crop&w=1200&q=80'
+    id: 'phase-1-day-1',
+    phaseNumber: 'Phase I',
+    dayLabel: 'Day 1',
+    title: 'Identifying the Challenge',
+    description: 'Participating schools, each represented by a team of three students from Classes IX–XII, present a research-backed Regional Problem Brief highlighting a significant issue in their respective regions. Through expert panel interactions and critical questioning, teams examine the problem, identify its root causes and consolidate their findings into a focused Core Challenge Statement.'
   },
   {
-    id: 'phase-2',
-    stageNumber: '02',
-    title: 'Phase II',
-    subtitle: 'Collaborate. Construct. Create.',
-    actionWords: ['COLLABORATE', 'CONSTRUCT', 'CREATE'],
-    description: 'Moving beyond unilateral rhetoric into pragmatic multilateral synthesis. Delegates forge cross-bloc consensus, harmonize divergent perspectives, and co-author concrete actionable policy solutions to the unveiled Core Challenge Statement.',
-    format: 'Unmoderated negotiation arenas, multi-bloc drafting lobbies, and joint resolution chambers testing emotional quotient and coalition-building acumen.',
-    deliverables: [
-      'Harmonized Draft Declarations',
-      'Joint Policy Framework & Fiscal Roadmaps',
-      'Plenary Presentation to Distinguished Jurists'
-    ],
-    judgingCriteria: [
-      'Consensus-Building & Conflict Resolution',
-      'Originality & Feasibility of Policy Mechanisms',
-      'Collective Synergy & Multilateral Compromise'
-    ],
-    landingImage: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80'
+    id: 'phase-1-day-2',
+    phaseNumber: 'Phase I',
+    dayLabel: 'Day 2',
+    title: 'From Challenge to Solution',
+    description: 'Teams draw lots to receive their assigned Core Challenge Statements and are given dedicated research time to develop practical, impactful solutions. They subsequently present their proposals before an expert jury for evaluation. The day concludes with a cultural exchange programme and closing ceremony, marking the transition towards the three-month Implementation Challenge.'
   },
   {
-    id: 'phase-outcome',
-    stageNumber: '03',
-    title: 'The Culmination',
-    subtitle: 'The Ascent Realized — Youth Declaration 2027',
-    actionWords: ['SYNTHESIZE', 'RATIFY', 'TRANSFORM'],
-    description: 'The summit apex. The ratified policies are codified into the official SMRJ Youth Declaration 2027, presented to global dignitaries, civil society leaders, and archived in the public repository for tangible policy advocacy.',
-    format: 'Solemn Plenary Voting, General Assembly Ratification, and Valedictory Address.',
-    deliverables: [
-      'The SMRJ Youth Declaration 2027',
-      'Actionable Recommendations for Civil Institutions',
-      'Commendation of Laureates & Best Delegation Accolades'
-    ],
-    judgingCriteria: [
-      'Actionable Real-World Feasibility',
-      'Alignment with Vasudhaiva Kutumbakam Ethos',
-      'Institutional Impact'
-    ],
-    landingImage: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=80'
+    id: 'phase-2-implementation',
+    phaseNumber: 'Phase II',
+    dayLabel: 'Post-Conference',
+    title: 'The Three-Month Implementation Challenge',
+    description: 'The Council extends beyond the conference through a three-month implementation journey. Teams execute their proposed solutions through structured action plans, document progress and demonstrate measurable impact. At the conclusion, initiatives are evaluated, with the most effective implementation recognised through the prestigious Impact in Action Award.'
   }
 ];
 
+export const ABOUT_EVENT = {
+  paragraph1: 'The SMRJ Youth Council is a national student-led initiative by Seth M.R. Jaipuria School, Lucknow, envisioned to bring together young minds from across the country on a shared platform of ideas, innovation and impact.',
+  paragraph2: 'At a time when the world faces complex social, environmental, economic and technological challenges, the Council encourages students to look beyond their immediate surroundings, recognise issues affecting communities and explore ways to create meaningful change.',
+  paragraph3: 'Through a two-day national council, students from Classes IX–XII will come together, bringing diverse experiences, perspectives and ideas. At its heart lies a simple yet powerful belief: every community has challenges worth addressing, and every young mind has the potential to contribute practical solutions.',
+  paragraph4: 'More than an event, SMRJ Youth Council is a platform to connect perspectives, cultivate leadership, foster innovation and translate ideas into action. It seeks to inspire a generation that does not merely acknowledge the challenges around them, but takes the initiative to address them.',
+  closingBelief: 'Because meaningful change begins when young minds unite with the courage to envision a better tomorrow and the determination to build it.'
+};
+
 export const ELIGIBILITY_CRITERIA = {
   teamSize: 3,
-  teamDescription: 'Exactly three student delegates per institutional delegation.',
-  gradeSpan: 'Grades IX — XII',
-  schoolAffiliation: 'All three participants must be officially enrolled in the same registered school.',
-  delegationCap: 'Schools may register up to 2 distinct delegations (subject to venue capacity).',
-  requirements: [
-    'Official nomination letter signed by the School Principal or Head of Institution.',
-    'Assigned Faculty Escort/Teacher In-Charge accompanying the delegation.',
-    'Commitment to attend both days (16th & 17th April 2027) in formal diplomatic attire.'
-  ]
+  description: 'Each school must register with a team of 3 participants from grades IX–XII.',
+  gradeSpan: 'Classes IX — XII',
+  affiliation: 'All three participants must be from the same school.'
 };
 
 export const EVENT_DETAILS = {
   name: 'SMRJ Youth Council 2027',
-  edition: 'Maiden Edition',
-  dates: '16—17 April 2027',
-  city: 'Lucknow, Uttar Pradesh, India',
-  venue: 'Seth M.R. Jaipuria School, Vineet Khand, Gomti Nagar',
-  taglineSanskrit: 'वसुधैव कुटुम्बकम्',
-  taglineEnglish: 'The World is One Family',
-  concept: 'The Ascent of Ideas',
-  contactEmail: 'smrjyouthcouncil@gmail.com',
-  registrationDeadline: '15 March 2027'
+  dates: '16–17 April 2027',
+  city: 'Lucknow, India',
+  venue: 'Seth M.R. Jaipuria School, Lucknow',
+  taglineSanskrit: 'वसुदेव कुटुम्बकम्',
+  taglineEnglish: 'The world is one family.',
+  contactEmail: 'smrjyouthcouncil@gmail.com'
 };

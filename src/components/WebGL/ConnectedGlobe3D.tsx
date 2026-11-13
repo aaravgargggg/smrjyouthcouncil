@@ -10,23 +10,23 @@ interface CityNode {
   country: string;
   lat: number;
   lng: number;
-  delegations: number;
+  schools: number;
   isHost?: boolean;
 }
 
 const CITIES: CityNode[] = [
-  { name: 'Lucknow (SMRJ Host)', country: 'India', lat: 26.8467, lng: 80.9462, delegations: 120, isHost: true },
-  { name: 'New Delhi', country: 'India', lat: 28.6139, lng: 77.2090, delegations: 42 },
-  { name: 'Mumbai', country: 'India', lat: 19.0760, lng: 72.8777, delegations: 38 },
-  { name: 'Dehradun', country: 'India', lat: 30.3165, lng: 78.0322, delegations: 24 },
-  { name: 'Kolkata', country: 'India', lat: 22.5726, lng: 88.3639, delegations: 28 },
-  { name: 'Bengaluru', country: 'India', lat: 12.9716, lng: 77.5946, delegations: 30 },
-  { name: 'London', country: 'United Kingdom', lat: 51.5074, lng: -0.1278, delegations: 14 },
-  { name: 'Singapore', country: 'Singapore', lat: 1.3521, lng: 103.8198, delegations: 18 },
-  { name: 'Dubai', country: 'UAE', lat: 25.2048, lng: 55.2708, delegations: 22 },
-  { name: 'New York', country: 'USA', lat: 40.7128, lng: -74.0060, delegations: 12 },
-  { name: 'Geneva', country: 'Switzerland', lat: 46.2044, lng: 6.1432, delegations: 15 },
-  { name: 'Tokyo', country: 'Japan', lat: 35.6762, lng: 139.6503, delegations: 10 }
+  { name: 'Seth M.R. Jaipuria School, Lucknow', country: 'India', lat: 26.8467, lng: 80.9462, schools: 120, isHost: true },
+  { name: 'New Delhi', country: 'India', lat: 28.6139, lng: 77.2090, schools: 42 },
+  { name: 'Mumbai', country: 'India', lat: 19.0760, lng: 72.8777, schools: 38 },
+  { name: 'Dehradun', country: 'India', lat: 30.3165, lng: 78.0322, schools: 24 },
+  { name: 'Kolkata', country: 'India', lat: 22.5726, lng: 88.3639, schools: 28 },
+  { name: 'Bengaluru', country: 'India', lat: 12.9716, lng: 77.5946, schools: 30 },
+  { name: 'London', country: 'United Kingdom', lat: 51.5074, lng: -0.1278, schools: 14 },
+  { name: 'Singapore', country: 'Singapore', lat: 1.3521, lng: 103.8198, schools: 18 },
+  { name: 'Dubai', country: 'UAE', lat: 25.2048, lng: 55.2708, schools: 22 },
+  { name: 'New York', country: 'USA', lat: 40.7128, lng: -74.0060, schools: 12 },
+  { name: 'Geneva', country: 'Switzerland', lat: 46.2044, lng: 6.1432, schools: 15 },
+  { name: 'Tokyo', country: 'Japan', lat: 35.6762, lng: 139.6503, schools: 10 }
 ];
 
 // Helper to convert Lat/Lng to Vector3 on sphere of given radius
@@ -304,7 +304,7 @@ export const ConnectedGlobe3D: React.FC<ConnectedGlobe3DProps> = ({ className = 
           </span>
         </div>
         <p className="text-xs text-ink-muted leading-relaxed">
-          The globe represents humanity as one family, connecting delegatory hubs across India and the world to the Lucknow summit.
+          The globe represents a connected world guided by this principle.
         </p>
         <div className="mt-3 pt-3 border-t border-purple/10 flex items-center justify-between">
           <div>
@@ -325,14 +325,14 @@ export const ConnectedGlobe3D: React.FC<ConnectedGlobe3DProps> = ({ className = 
             <h4 className="font-display text-lg text-gold font-semibold">{selectedCity.name}</h4>
             {selectedCity.isHost && (
               <span className="px-2 py-0.5 bg-gold text-purple text-[10px] font-bold uppercase rounded">
-                Host Summit
+                Host School
               </span>
             )}
           </div>
           <p className="text-xs text-cream/75 mt-1">{selectedCity.country}</p>
           <div className="mt-2 text-xs flex items-center justify-between text-cream/90">
-            <span>Registered Delegations:</span>
-            <span className="font-semibold text-gold">{selectedCity.delegations}</span>
+            <span>Participating Schools:</span>
+            <span className="font-semibold text-gold">{selectedCity.schools}</span>
           </div>
         </div>
       )}

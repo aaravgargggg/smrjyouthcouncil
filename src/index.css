@@ -4,90 +4,82 @@
 
 @layer base {
   :root {
-    --color-purple: #563F6A;
-    --color-purple-deep: #3B284B;
-    --color-gold: #EDC868;
-    --color-cream: #FAF8F5;
-    --color-ink: #2A2330;
+    --bg-page: #f7f4ee;
+    --bg-card: #fdfbf7;
+    --bg-raised: #efe9df;
+    --hairline: rgba(31, 27, 22, 0.08);
+    --border-input: rgba(31, 27, 22, 0.32);
+    --text-primary: #1f1b16;
+    --text-secondary: #5e554a;
+    --text-muted: #6f665a;
+
+    --brand-aubergine: #2a1b36;
+    --brand-aubergine-raised: #3b284b;
+    --brand-aubergine-hairline: rgba(239, 233, 222, 0.12);
+    --text-dark-primary: #efe9de;
+    --text-dark-secondary: #b3aaa0;
+
+    --accent: #edc868;
+    --accent-text: #1f1b16;
+
+    --semantic-positive: #16a34a;
+    --semantic-negative: #dc2626;
+
+    --ease-out-cubic: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   html {
     scroll-behavior: smooth;
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    background-color: #FAF8F5;
-    color: #2A2330;
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Custom subtle scrollbar */
+  /* Optical sizing for editorial display serif */
+  .font-serif, .font-display {
+    font-family: 'Bodoni Moda', 'Instrument Serif', Georgia, serif;
+    font-optical-sizing: auto;
+  }
+
+  input, select, textarea {
+    accent-color: var(--brand-aubergine);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--brand-aubergine);
+    outline-offset: 2px;
+  }
+
+  /* Quiet scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #FAF8F5;
+    background: var(--bg-page);
   }
   ::-webkit-scrollbar-thumb {
-    background: #563F6A44;
-    border-radius: 9999px;
+    background: rgba(31, 27, 22, 0.2);
+    border-radius: 4px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #563F6A88;
+    background: rgba(31, 27, 22, 0.4);
   }
 }
 
-/* Editorial Serif & Devanagari styling */
-.font-display {
-  font-family: 'Instrument Serif', 'Cormorant Garamond', Georgia, serif;
+/* Tabular figures utility */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
 }
 
-.font-garamond {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-}
-
-.font-devanagari {
-  font-family: 'Noto Serif Devanagari', serif;
-}
-
-/* Architectural Arch Mask */
-.arch-mask {
-  border-top-left-radius: 9999px;
-  border-top-right-radius: 9999px;
-}
-
-.arch-mask-bottom {
-  border-bottom-left-radius: 9999px;
-  border-bottom-right-radius: 9999px;
-}
-
-/* Shimmer & Gold accents */
-.text-gold-gradient {
-  background: linear-gradient(135deg, #F8E9B6 0%, #EDC868 50%, #CCA344 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.border-gold-subtle {
-  border-color: rgba(237, 200, 104, 0.35);
-}
-
-/* Subtle architectural grid pattern */
-.bg-grid-pattern {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(86, 63, 106, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(86, 63, 106, 0.04) 1px, transparent 1px);
-}
-
-.bg-grid-dark {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(237, 200, 104, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(237, 200, 104, 0.05) 1px, transparent 1px);
-}
-
-/* Subtle noise texture */
-.paper-texture {
-  background-color: #FAF8F5;
-  background-image: radial-gradient(rgba(42, 35, 48, 0.03) 1px, transparent 0);
-  background-size: 24px 24px;
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

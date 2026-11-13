@@ -4,27 +4,22 @@ import {
   Mail, 
   Phone, 
   MapPin, 
-  ExternalLink, 
-  Send, 
-  CheckCircle2, 
-  AlertCircle, 
-  Sparkles, 
-  Building 
+  ArrowUpRight, 
+  Check 
 } from 'lucide-react';
 
 interface ContactPageProps {
   onNavigate: (page: PageId) => void;
 }
 
-export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
+export const ContactPage: React.FC<ContactPageProps> = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    role: 'Teacher In-Charge',
+    role: 'Teacher',
     message: '',
-    captchaCode: '',
-    botField: '' // Honeypot spam protection
+    botField: ''
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -40,22 +35,19 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
       err.email = 'Please provide a valid email address.';
     }
     if (!formData.phone.trim()) {
-      err.phone = 'Phone contact number is required.';
+      err.phone = 'Phone number is required.';
     } else if (!/^[0-9+ -]{7,16}$/.test(formData.phone)) {
-      err.phone = 'Please provide a valid phone format (e.g. +91 98765 43210).';
+      err.phone = 'Please provide a valid phone format.';
     }
-    if (!formData.message.trim() || formData.message.length < 10) {
-      err.message = 'Please provide a detailed inquiry (minimum 10 characters).';
+    if (!formData.message.trim()) {
+      err.message = 'Please provide your message or inquiry.';
     }
     return err;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.botField) {
-      // Spam honeypot triggered silently
-      return;
-    }
+    if (formData.botField) return;
 
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
@@ -66,340 +58,311 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
     setErrors({});
     setIsSubmitting(true);
 
-    // Simulate reliable dispatch
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmittedSuccess(true);
-    }, 800);
+    }, 400);
   };
 
   return (
-    <div className="w-full bg-cream min-h-screen pt-24">
+    <div className="w-full bg-[#f7f4ee] min-h-screen pt-24 pb-24">
       
-      {/* SECTION 1: EDITORIAL HEADER */}
-      <section className="py-16 lg:py-24 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-4">
-            <span className="text-xs font-bold uppercase tracking-widest text-purple">
-              01 — Secretariat Liaison
-            </span>
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl text-ink leading-tight">
-              We'd Love to <br />
-              <span className="italic font-garamond text-purple">Hear From You.</span>
-            </h1>
-            <p className="text-base sm:text-lg text-ink-muted leading-relaxed max-w-xl">
-              For all registration queries, delegation accommodations, committee logistics, or institutional partnerships, get in touch with the SMRJ Youth Council team.
-            </p>
-          </div>
+      {/* 1. HEADER */}
+      <section className="max-w-[1200px] mx-auto px-6 sm:px-8 py-12">
+        <div className="border-t border-[rgba(31,27,22,0.08)] pt-6 mb-8">
+          <span className="font-mono text-xs text-[#6f665a]">
+            01 · Contact
+          </span>
+        </div>
+
+        <div className="max-w-2xl space-y-3">
+          <h1 className="font-serif text-4xl sm:text-5xl text-[#1f1b16] font-normal leading-[1.1]">
+            Contact the organising team
+          </h1>
+          <p className="text-base text-[#5e554a] leading-relaxed">
+            For registration queries, sponsorship, logistics and general enquiries.
+          </p>
         </div>
       </section>
 
-
-      {/* SECTION 2: 5 OFFICIAL CONTACT DETAILS */}
-      <section className="py-12 bg-cream-dark/60 border-y border-purple/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 2. CONTACT DETAILS DEFINITION GRID (NO CARDS) */}
+      <section className="max-w-[1200px] mx-auto px-6 sm:px-8 py-8">
+        <div className="pt-8 border-t border-[rgba(31,27,22,0.08)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-            
-            {/* 1. Email */}
-            <a
-              href="mailto:smrjyouthcouncil@gmail.com"
-              className="p-6 bg-white rounded-2xl border border-purple/10 hover:border-gold transition-all shadow-sm flex flex-col justify-between group"
-            >
-              <div>
-                <Mail className="w-6 h-6 text-purple mb-3 group-hover:text-gold-dark transition-colors" />
-                <span className="text-[10px] uppercase font-bold tracking-widest text-gold-dark block">
-                  Official Inquiries
-                </span>
-                <h4 className="font-display text-lg font-bold text-ink mt-1">
-                  General Email
-                </h4>
-              </div>
-              <div className="text-xs text-purple font-medium mt-3 break-all group-hover:underline">
-                smrjyouthcouncil@gmail.com
-              </div>
-            </a>
-
-            {/* 2. Faculty Advisor */}
-            <a
-              href="tel:+917318589995"
-              className="p-6 bg-white rounded-2xl border border-purple/10 hover:border-gold transition-all shadow-sm flex flex-col justify-between group"
-            >
-              <div>
-                <Phone className="w-6 h-6 text-purple mb-3 group-hover:text-gold-dark transition-colors" />
-                <span className="text-[10px] uppercase font-bold tracking-widest text-gold-dark block">
-                  Faculty Advisor
-                </span>
-                <h4 className="font-display text-lg font-bold text-ink mt-1">
-                  Mrs. Bhavya Jain
-                </h4>
-              </div>
-              <div className="text-xs text-purple font-medium mt-3 group-hover:underline">
-                +91 73185 89995
-              </div>
-            </a>
-
-            {/* 3. Director Tavisha */}
-            <a
-              href="tel:+917880430531"
-              className="p-6 bg-white rounded-2xl border border-purple/10 hover:border-gold transition-all shadow-sm flex flex-col justify-between group"
-            >
-              <div>
-                <Phone className="w-6 h-6 text-purple mb-3 group-hover:text-gold-dark transition-colors" />
-                <span className="text-[10px] uppercase font-bold tracking-widest text-gold-dark block">
-                  Director
-                </span>
-                <h4 className="font-display text-lg font-bold text-ink mt-1">
-                  Tavisha Gattani
-                </h4>
-              </div>
-              <div className="text-xs text-purple font-medium mt-3 group-hover:underline">
-                +91 78804 30531
-              </div>
-            </a>
-
-            {/* 4. Director Rudraa */}
-            <a
-              href="tel:+919648666630"
-              className="p-6 bg-white rounded-2xl border border-purple/10 hover:border-gold transition-all shadow-sm flex flex-col justify-between group"
-            >
-              <div>
-                <Phone className="w-6 h-6 text-purple mb-3 group-hover:text-gold-dark transition-colors" />
-                <span className="text-[10px] uppercase font-bold tracking-widest text-gold-dark block">
-                  Director
-                </span>
-                <h4 className="font-display text-lg font-bold text-ink mt-1">
-                  Rudraa Singh
-                </h4>
-              </div>
-              <div className="text-xs text-purple font-medium mt-3 group-hover:underline">
-                +91 96486 66630
-              </div>
-            </a>
-
-            {/* 5. Venue */}
-            <a
-              href="https://maps.google.com/?q=Seth+M.R.+Jaipuria+School+Gomti+Nagar+Lucknow"
-              target="_blank"
-              rel="noreferrer"
-              className="p-6 bg-white rounded-2xl border border-purple/10 hover:border-gold transition-all shadow-sm flex flex-col justify-between group"
-            >
-              <div>
-                <MapPin className="w-6 h-6 text-purple mb-3 group-hover:text-gold-dark transition-colors" />
-                <span className="text-[10px] uppercase font-bold tracking-widest text-gold-dark block">
-                  Summit Venue
-                </span>
-                <h4 className="font-display text-lg font-bold text-ink mt-1">
-                  Jaipuria Campus
-                </h4>
-              </div>
-              <div className="text-xs text-purple font-medium mt-3 flex items-center gap-1 group-hover:underline">
-                <span>Gomti Nagar, LKO</span>
-                <ExternalLink className="w-3 h-3" />
-              </div>
-            </a>
-
-          </div>
-
-        </div>
-      </section>
-
-
-      {/* SECTION 3: TWO-COLUMN CONTACT FORM */}
-      <section className="py-24 bg-cream relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            
-            {/* Left 5 Columns: Branding, Architecture & Copy */}
-            <div className="lg:col-span-5 space-y-6">
-              <span className="text-xs font-bold uppercase tracking-widest text-purple">
-                03 — Send a Direct Transmission
+          {/* Email */}
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-2 text-[#5e554a]">
+              <Mail className="w-4 h-4 text-[#6f665a]" />
+              <span className="text-[13px] font-sans text-[#6f665a]">
+                Email
               </span>
+            </div>
+            <div className="font-sans text-base text-[#1f1b16] break-all">
+              smrjyouthcouncil@gmail.com
+            </div>
+            <div>
+              <a
+                href="mailto:smrjyouthcouncil@gmail.com"
+                className="text-xs text-[#1f1b16] underline hover:text-[#5e554a]"
+              >
+                Send email
+              </a>
+            </div>
+          </div>
 
-              <h2 className="font-display text-4xl sm:text-5xl text-ink leading-tight">
-                Direct Dialogue with the Secretariat.
+          {/* Teacher Coordinator */}
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-2 text-[#5e554a]">
+              <Phone className="w-4 h-4 text-[#6f665a]" />
+              <span className="text-[13px] font-sans text-[#6f665a]">
+                Teacher Coordinator
+              </span>
+            </div>
+            <div className="font-sans text-base text-[#1f1b16]">
+              Mrs. Bhavya Jain
+            </div>
+            <div className="font-mono text-xs text-[#5e554a] tabular-nums">
+              +91 73185 89995
+            </div>
+          </div>
+
+          {/* Director 1 */}
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-2 text-[#5e554a]">
+              <Phone className="w-4 h-4 text-[#6f665a]" />
+              <span className="text-[13px] font-sans text-[#6f665a]">
+                Director
+              </span>
+            </div>
+            <div className="font-sans text-base text-[#1f1b16]">
+              Tavisha Gattani
+            </div>
+            <div className="font-mono text-xs text-[#5e554a] tabular-nums">
+              +91 78804 30531
+            </div>
+          </div>
+
+          {/* Director 2 */}
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-2 text-[#5e554a]">
+              <Phone className="w-4 h-4 text-[#6f665a]" />
+              <span className="text-[13px] font-sans text-[#6f665a]">
+                Director
+              </span>
+            </div>
+            <div className="font-sans text-base text-[#1f1b16]">
+              Rudraa Singh
+            </div>
+            <div className="font-mono text-xs text-[#5e554a] tabular-nums">
+              +91 96486 66630
+            </div>
+          </div>
+
+          {/* Venue */}
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-2 text-[#5e554a]">
+              <MapPin className="w-4 h-4 text-[#6f665a]" />
+              <span className="text-[13px] font-sans text-[#6f665a]">
+                Venue
+              </span>
+            </div>
+            <div className="font-sans text-base text-[#1f1b16]">
+              Seth M.R. Jaipuria School
+            </div>
+            <div>
+              <a
+                href="https://maps.google.com/?q=Seth+M.R.+Jaipuria+School+Gomti+Nagar+Lucknow"
+                target="_blank"
+                rel="noreferrer"
+                className="text-xs text-[#1f1b16] underline hover:text-[#5e554a] inline-flex items-center gap-0.5"
+              >
+                <span>Open in Google Maps</span>
+                <ArrowUpRight className="w-3 h-3" />
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 3. SEND AN ENQUIRY & MAP */}
+      <section className="max-w-[1200px] mx-auto px-6 sm:px-8 py-16">
+        <div className="pt-8 border-t border-[rgba(31,27,22,0.08)] grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Left Column: Heading and Google Map */}
+          <div className="lg:col-span-5 space-y-6">
+            <div className="space-y-2">
+              <h2 className="font-serif text-3xl text-[#1f1b16] font-normal">
+                Send an enquiry
               </h2>
-
-              <p className="text-base text-ink-muted leading-relaxed">
-                Whether you need special committee accommodations, travel escorts from Lucknow Airport or Railway station, or want to invite our delegation directors for a preparatory briefing — we respond within 24 hours.
+              <p className="text-sm text-[#5e554a] leading-relaxed">
+                Reach out to the organising team regarding school registration, travel logistics, and event schedules.
               </p>
-
-              {/* Small Architectural Photograph */}
-              <div className="rounded-2xl overflow-hidden border border-gold/40 shadow-md aspect-[16/10] relative">
-                <img
-                  src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80"
-                  alt="Jaipuria School Administrative Quadrangle"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/60 to-transparent flex items-end p-4 text-cream">
-                  <span className="text-[11px] font-mono uppercase tracking-wider text-gold">
-                    Jaipuria Administration Block · Vineet Khand
-                  </span>
-                </div>
-              </div>
-
-              <div className="p-4 bg-white rounded-xl border border-purple/10 text-xs text-ink/80 flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-gold shrink-0" />
-                <span>Response turnaround: Guaranteed under 24 business hours.</span>
-              </div>
             </div>
 
-            {/* Right 7 Columns: Interactive Contact Form */}
-            <div className="lg:col-span-7 bg-white rounded-3xl p-8 sm:p-12 border border-gold/40 shadow-xl">
-              
-              {submittedSuccess ? (
-                <div className="text-center py-12 space-y-4 animate-fadeIn">
-                  <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto">
-                    <CheckCircle2 className="w-8 h-8" />
-                  </div>
-                  <h3 className="font-display text-3xl text-ink font-bold">
-                    Transmission Received
-                  </h3>
-                  <p className="text-sm text-ink-muted max-w-md mx-auto leading-relaxed">
-                    Thank you, {formData.name}. Your inquiry has been routed directly to the SMRJ Secretariat and Mrs. Bhavya Jain. A formal response will be dispatched to <strong>{formData.email}</strong> promptly.
-                  </p>
-                  <button
-                    onClick={() => {
-                      setSubmittedSuccess(false);
-                      setFormData({
-                        name: '',
-                        email: '',
-                        phone: '',
-                        role: 'Teacher In-Charge',
-                        message: '',
-                        captchaCode: '',
-                        botField: ''
-                      });
-                    }}
-                    className="px-6 py-2.5 bg-purple text-cream text-xs font-semibold uppercase tracking-wider rounded-full hover:bg-purple-700 transition-colors"
-                  >
-                    Send Another Transmission
-                  </button>
+            {/* Google Map with card radius, hairline border, and 0.6 saturation */}
+            <div className="space-y-2">
+              <div
+                className="rounded-[12px] overflow-hidden border border-[rgba(31,27,22,0.08)] relative"
+                style={{ height: '300px' }}
+              >
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.618835298833!2d81.00888777522229!3d26.852073176683234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399be2e87a8c13dd%3A0x8c7fded4d6f6b6ed!2sSeth%20M.%20R.%20Jaipuria%20School!5e0!3m2!1sen!2sin!4v1793793237817!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, filter: 'saturate(0.6)' }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  title="Seth M.R. Jaipuria School Location"
+                />
+              </div>
+              <div className="text-right">
+                <a
+                  href="https://maps.google.com/?q=Seth+M.R.+Jaipuria+School+Gomti+Nagar+Lucknow"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-xs text-[#5e554a] hover:text-[#1f1b16] inline-flex items-center gap-0.5"
+                >
+                  <span>Open in Google Maps</span>
+                  <ArrowUpRight className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Enquiry Form */}
+          <div className="lg:col-span-7 bg-[#fdfbf7] rounded-[16px] p-8 border border-[rgba(31,27,22,0.08)]">
+            {submittedSuccess ? (
+              <div className="text-center py-12 space-y-4 animate-fadeIn">
+                <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center mx-auto">
+                  <Check className="w-6 h-6" />
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  {/* Honeypot hidden input */}
+                <h3 className="font-serif text-2xl text-[#1f1b16] font-normal">
+                  Message sent
+                </h3>
+                <p className="text-sm text-[#5e554a] max-w-sm mx-auto">
+                  Your enquiry has been received. The organising team will respond to your email.
+                </p>
+                <button
+                  onClick={() => {
+                    setSubmittedSuccess(false);
+                    setFormData({
+                      name: '',
+                      email: '',
+                      phone: '',
+                      role: 'Teacher',
+                      message: '',
+                      botField: ''
+                    });
+                  }}
+                  className="h-9 px-4 rounded-[8px] border border-[rgba(31,27,22,0.32)] text-[#1f1b16] text-xs font-medium hover:bg-[#efe9df]"
+                >
+                  Send another message
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <input
+                  type="text"
+                  name="botField"
+                  value={formData.botField}
+                  onChange={(e) => setFormData({ ...formData, botField: e.target.value })}
+                  className="hidden"
+                  tabIndex={-1}
+                />
+
+                {/* Name */}
+                <div>
+                  <label className="block text-[13px] font-medium text-[#5e554a] mb-1.5">
+                    Full name <span className="text-[#dc2626]">*</span>
+                  </label>
                   <input
                     type="text"
-                    name="botField"
-                    value={formData.botField}
-                    onChange={(e) => setFormData({ ...formData, botField: e.target.value })}
-                    className="hidden"
-                    tabIndex={-1}
-                    autoComplete="off"
+                    placeholder="Your name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full h-11 px-3.5 rounded-[8px] border border-[rgba(31,27,22,0.32)] text-sm text-[#1f1b16] bg-[#fdfbf7] placeholder:text-[#6f665a] focus:outline-none focus:border-[#2a1b36]"
                   />
+                  {errors.name && <p className="text-xs text-[#dc2626] mt-1">{errors.name}</p>}
+                </div>
 
-                  {/* Name */}
+                {/* Email & Phone */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-1.5">
-                      Your Full Name <span className="text-red-500">*</span>
+                    <label className="block text-[13px] font-medium text-[#5e554a] mb-1.5">
+                      Email address <span className="text-[#dc2626]">*</span>
                     </label>
                     <input
-                      type="text"
-                      placeholder="e.g. Dr. Rajesh Sharma / Ananya Verma"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className={`w-full px-4 py-3 rounded-xl border text-sm text-ink bg-cream-light focus:outline-none focus:ring-1 ${
-                        errors.name ? 'border-red-500 focus:ring-red-500' : 'border-purple/20 focus:border-gold focus:ring-gold'
-                      }`}
+                      type="email"
+                      placeholder="name@school.edu"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full h-11 px-3.5 rounded-[8px] border border-[rgba(31,27,22,0.32)] text-sm text-[#1f1b16] bg-[#fdfbf7] placeholder:text-[#6f665a] focus:outline-none focus:border-[#2a1b36]"
                     />
-                    {errors.name && <p className="text-[11px] text-red-600 mt-1">{errors.name}</p>}
+                    {errors.email && <p className="text-xs text-[#dc2626] mt-1">{errors.email}</p>}
                   </div>
 
-                  {/* Email & Phone Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-1.5">
-                        Email Address <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="email"
-                        placeholder="you@school.edu.in"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className={`w-full px-4 py-3 rounded-xl border text-sm text-ink bg-cream-light focus:outline-none focus:ring-1 ${
-                          errors.email ? 'border-red-500 focus:ring-red-500' : 'border-purple/20 focus:border-gold focus:ring-gold'
-                        }`}
-                      />
-                      {errors.email && <p className="text-[11px] text-red-600 mt-1">{errors.email}</p>}
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-1.5">
-                        Phone Number <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="tel"
-                        placeholder="+91 98765 43210"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className={`w-full px-4 py-3 rounded-xl border text-sm text-ink bg-cream-light focus:outline-none focus:ring-1 ${
-                          errors.phone ? 'border-red-500 focus:ring-red-500' : 'border-purple/20 focus:border-gold focus:ring-gold'
-                        }`}
-                      />
-                      {errors.phone && <p className="text-[11px] text-red-600 mt-1">{errors.phone}</p>}
-                    </div>
-                  </div>
-
-                  {/* Role Dropdown */}
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-1.5">
-                      Your Affiliation / Role
+                    <label className="block text-[13px] font-medium text-[#5e554a] mb-1.5">
+                      Phone number <span className="text-[#dc2626]">*</span>
                     </label>
-                    <select
-                      value={formData.role}
-                      onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-purple/20 bg-cream-light text-sm text-ink focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold"
-                    >
-                      <option value="Teacher In-Charge">Teacher In-Charge / Faculty Escort</option>
-                      <option value="School Principal / Administrator">School Principal / Administrator</option>
-                      <option value="Student Delegate">Prospective Student Delegate</option>
-                      <option value="Corporate Sponsor / Partner">Corporate Sponsor / Partner</option>
-                      <option value="Press / Media Representative">Press / Media Representative</option>
-                      <option value="Other">Other Inquiry</option>
-                    </select>
+                    <input
+                      type="tel"
+                      placeholder="+91 98765 43210"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full h-11 px-3.5 rounded-[8px] border border-[rgba(31,27,22,0.32)] text-sm text-[#1f1b16] bg-[#fdfbf7] placeholder:text-[#6f665a] focus:outline-none focus:border-[#2a1b36]"
+                    />
+                    {errors.phone && <p className="text-xs text-[#dc2626] mt-1">{errors.phone}</p>}
                   </div>
+                </div>
 
-                  {/* Message */}
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-1.5">
-                      Message / Inquiry Details <span className="text-red-500">*</span>
-                    </label>
-                    <textarea
-                      rows={4}
-                      placeholder="Please articulate your query regarding delegation allocations, itinerary, or accommodations..."
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className={`w-full px-4 py-3 rounded-xl border text-sm text-ink bg-cream-light focus:outline-none focus:ring-1 ${
-                        errors.message ? 'border-red-500 focus:ring-red-500' : 'border-purple/20 focus:border-gold focus:ring-gold'
-                      }`}
-                    ></textarea>
-                    {errors.message && <p className="text-[11px] text-red-600 mt-1">{errors.message}</p>}
-                  </div>
+                {/* Role */}
+                <div>
+                  <label className="block text-[13px] font-medium text-[#5e554a] mb-1.5">
+                    Role
+                  </label>
+                  <select
+                    value={formData.role}
+                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                    className="w-full h-11 px-3.5 rounded-[8px] border border-[rgba(31,27,22,0.32)] bg-[#fdfbf7] text-sm text-[#1f1b16] focus:outline-none focus:border-[#2a1b36]"
+                  >
+                    <option value="Teacher">Teacher / Faculty advisor</option>
+                    <option value="Student">Student delegate</option>
+                    <option value="Principal">School administrator</option>
+                    <option value="Sponsor">Partner / Sponsor</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
 
-                  {/* Submit Button */}
-                  <div className="pt-2">
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full py-3.5 bg-purple text-gold font-bold text-xs uppercase tracking-widest rounded-xl hover:bg-purple-700 shadow-md transition-all flex items-center justify-center gap-2"
-                    >
-                      {isSubmitting ? (
-                        <span>Transmitting to Secretariat...</span>
-                      ) : (
-                        <>
-                          <span>Transmit Message</span>
-                          <Send className="w-4 h-4" />
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </form>
-              )}
+                {/* Message */}
+                <div>
+                  <label className="block text-[13px] font-medium text-[#5e554a] mb-1.5">
+                    Message <span className="text-[#dc2626]">*</span>
+                  </label>
+                  <textarea
+                    rows={4}
+                    placeholder="Write your inquiry..."
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="w-full p-3.5 rounded-[8px] border border-[rgba(31,27,22,0.32)] text-sm text-[#1f1b16] bg-[#fdfbf7] placeholder:text-[#6f665a] focus:outline-none focus:border-[#2a1b36]"
+                  />
+                  {errors.message && <p className="text-xs text-[#dc2626] mt-1">{errors.message}</p>}
+                </div>
 
-            </div>
-
+                {/* Submit */}
+                <div className="pt-2">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="h-10 px-6 rounded-[8px] bg-[#edc868] text-[#1f1b16] font-medium text-sm hover:bg-[#e2bc5c] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#2a1b36]"
+                  >
+                    {isSubmitting ? 'Sending...' : 'Send enquiry'}
+                  </button>
+                </div>
+              </form>
+            )}
           </div>
 
         </div>
