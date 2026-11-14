@@ -15,7 +15,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="lg:col-span-5 space-y-4">
             <div>
               <span className="font-sans font-semibold text-lg text-[#efe9de]">
-                Youth Council 2027
+                SMRJ Youth Council 2027
               </span>
             </div>
 
