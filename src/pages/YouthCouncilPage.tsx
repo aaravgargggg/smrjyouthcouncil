@@ -38,13 +38,13 @@ export const YouthCouncilPage: React.FC<YouthCouncilPageProps> = ({ onNavigate }
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 text-[#3d362e] text-base sm:text-[17px] leading-relaxed">
             <div className="lg:col-span-6 space-y-6">
               <p>
-                The SMRJ Youth Council is a national student-led initiative by Seth M.R. Jaipuria School, Lucknow, envisioned to bring together young minds from across the country on a common platform of ideas, innovation and impact.
+                The SMRJ Youth Council is a student-led initiative by Seth M.R. Jaipuria School, Lucknow, envisioned to bring together young minds from across the country on a common platform of ideas, innovation and impact.
               </p>
               <p>
                 At a time when the world faces complex social, environmental, economic and technological challenges, the Council seeks to empower students to look beyond their immediate surroundings, recognise issues that shape communities and explore ways to bring about meaningful change.
               </p>
               <p>
-                Through a two-day national council, students from Classes IX–XII will come together, representing diverse regions, experiences and perspectives. The initiative is built around a simple yet powerful idea: every community has challenges worth addressing, and every young mind has the potential to contribute towards solving them with practical solutions.
+                Through a two-day council, students from Classes IX–XII will come together, representing diverse regions, experiences and perspectives. The initiative is built around a simple yet powerful idea: every community has challenges worth addressing, and every young mind has the potential to contribute towards solving them with practical solutions.
               </p>
             </div>
             <div className="lg:col-span-6 space-y-6">

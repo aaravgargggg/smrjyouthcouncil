@@ -63,7 +63,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         {/* Top Folio Strip inside Hero */}
         <div className="relative z-10 max-w-[1200px] w-full mx-auto px-6 sm:px-8 pt-4">
           <div className="flex items-center justify-between text-xs text-white/80 font-mono tracking-wider border-b border-white/15 pb-3">
-            <span>MAIDEN EDITION · NATIONAL YOUTH COUNCIL</span>
+            <span>MAIDEN EDITION · SMRJ YOUTH COUNCIL</span>
             <span>16–17 APRIL 2027 · LUCKNOW</span>
           </div>
         </div>
@@ -141,7 +141,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 16–17 April 2027
               </div>
               <div className="text-sm text-[#5e554a]">
-                Two-day national council sessions
+                Two-day council sessions
               </div>
             </div>
 
