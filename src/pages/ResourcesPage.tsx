@@ -110,9 +110,6 @@ export const ResourcesPage: React.FC<ResourcesPageProps> = ({ onNavigate }) => {
                 <h3 className="font-serif text-2xl text-[#1f1b16] font-normal">
                   {box.title}
                 </h3>
-                <p className="text-sm text-[#5e554a] leading-relaxed">
-                  {box.description}
-                </p>
               </div>
 
               <div>
@@ -136,11 +133,84 @@ export const ResourcesPage: React.FC<ResourcesPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* 2. VOTE FOR WHAT MATTERS */}
+      {/* 2. PROBLEM STATEMENTS RECEIVED */}
+      <section className="max-w-[1200px] mx-auto px-6 sm:px-8 py-12">
+        <div className="border-t border-[rgba(31,27,22,0.08)] pt-6 mb-8">
+          <span className="font-mono text-xs text-[#6f665a] uppercase tracking-wider">
+            02 · Submissions
+          </span>
+        </div>
+
+        <div className="mb-8">
+          <h2 className="font-serif text-3xl sm:text-4xl text-[#1f1b16] font-normal">
+            Problem Statements Received
+          </h2>
+        </div>
+
+        <div className="divide-y divide-[rgba(31,27,22,0.08)] border-y border-[rgba(31,27,22,0.08)]">
+          <div className="py-6 flex flex-col md:flex-row md:items-start justify-between gap-6 px-3 rounded-[6px]">
+            <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-8 flex-1">
+              <div className="space-y-1 shrink-0 w-28">
+                <span className="text-[11px] font-mono text-[#6f665a] uppercase tracking-wider block">
+                  Team Code
+                </span>
+                <span className="font-mono text-base text-[#1f1b16] font-semibold">
+                  YC001
+                </span>
+              </div>
+
+              <div className="space-y-2 flex-1">
+                <div className="space-y-0.5">
+                  <span className="text-[11px] font-mono text-[#6f665a] uppercase tracking-wider block">
+                    Problem Name
+                  </span>
+                  <h3 className="font-serif text-2xl text-[#1f1b16] font-normal">
+                    To be added
+                  </h3>
+                </div>
+                <div className="pt-1">
+                  <p className="text-sm text-[#5e554a] leading-relaxed max-w-3xl">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. CORE CHALLENGE STATEMENTS */}
+      <section className="max-w-[1200px] mx-auto px-6 sm:px-8 py-8">
+        <div className="border-t border-[rgba(31,27,22,0.08)] pt-6 mb-8">
+          <span className="font-mono text-xs text-[#6f665a] uppercase tracking-wider">
+            03 · Challenge Statements
+          </span>
+        </div>
+
+        <div className="p-8 sm:p-10 rounded-[14px] bg-[#fdfbf7] border border-[rgba(31,27,22,0.08)] shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="space-y-2 max-w-2xl">
+            <h2 className="font-serif text-2xl sm:text-3xl text-[#1f1b16] font-normal">
+              Core Challenge Statements
+            </h2>
+            <p className="text-sm sm:text-base text-[#5e554a] leading-relaxed">
+              Core Challenge Statements -(to be given later–end of day1). Assigned through lot draw following the consolidation of Regional Problem Briefs.
+            </p>
+          </div>
+
+          <div className="shrink-0">
+            <div className="h-10 px-4 rounded-[8px] border border-[rgba(31,27,22,0.12)] text-[#6f665a] text-xs font-mono flex items-center gap-2 bg-[#efe9df]/50">
+              <Lock className="w-3.5 h-3.5 text-[#6f665a]" />
+              <span>To be given later – end of Day 1</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. VOTE FOR WHAT MATTERS */}
       <section className="max-w-[1200px] mx-auto px-6 sm:px-8 py-16">
         <div className="border-t border-[rgba(31,27,22,0.08)] pt-6 mb-8">
           <span className="font-mono text-xs text-[#6f665a] uppercase tracking-wider">
-            02 · Community Deliberation
+            04 · Community Deliberation
           </span>
         </div>
 

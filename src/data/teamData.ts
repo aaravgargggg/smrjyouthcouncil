@@ -32,26 +32,26 @@ export const ORGANISING_COMMITTEE_DEPARTMENTS: Department[] = [
     index: '01',
     name: 'Administrative and Public Relations Heads',
     members: [
-      { name: 'Aanya Srivastava', role: 'Head' },
-      { name: 'Kabir Mehrotra', role: 'Head' }
-    ]
-  },
-  {
-    id: 'finance',
-    index: '02',
-    name: 'Finance Heads',
-    members: [
-      { name: 'Arjun Singhal', role: 'Head' },
-      { name: 'Ishaan Tandon', role: 'Head' }
+      { name: 'Aratrika Gupta', role: 'Head' },
+      { name: 'Punya Goel', role: 'Head' }
     ]
   },
   {
     id: 'tech-media',
-    index: '03',
+    index: '02',
     name: 'Tech and Media Heads',
     members: [
-      { name: 'Aarav Gupta', role: 'Head' },
+      { name: 'Aarav Garg', role: 'Head' },
       { name: 'Rhea Mathur', role: 'Head' }
+    ]
+  },
+  {
+    id: 'finance',
+    index: '03',
+    name: 'Finance Heads',
+    members: [
+      { name: 'Arjun Singhal', role: 'Head' },
+      { name: 'Ishaan Tandon', role: 'Head' }
     ]
   },
   {
